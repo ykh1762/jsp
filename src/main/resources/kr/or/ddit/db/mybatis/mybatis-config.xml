@@ -8,6 +8,7 @@
   <typeAliases>
   	<typeAlias type="kr.or.ddit.user.model.UserVo" alias="userVo"/>
   	<typeAlias type="kr.or.ddit.lprod.model.LprodVo" alias="lprodVo"/>
+  	<typeAlias type="kr.or.ddit.prod.model.ProdVo" alias="prodVo"/>
   </typeAliases>
 
   <environments default="development">

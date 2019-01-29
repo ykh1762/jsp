@@ -9,7 +9,7 @@
   	</select>
   	
 	<!-- 특정 카테고리의 prodList 조회(userId)  -->
-  	<select id="selectLprod" resultType="lprodVo" parameterType="String">
+  	<select id="selectLprod" resultType="prodVo" parameterType="String">
 		select prod_id, prod_name, prod_buyer, prod_cost from prod
 		where prod_lgu = #{lprod_gu}
   	</select>
