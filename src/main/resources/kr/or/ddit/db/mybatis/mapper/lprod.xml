@@ -14,6 +14,24 @@
 		where prod_lgu = #{lprod_gu}
   	</select>
   	
+  	<!-- 분류 페이징 조회 -->
+  	<select id="selectLprodPagingList" resultType="lprodVo" parameterType="lprodVo">
+		select *
+		  from
+			(select a.*, rownum rn
+			   from
+			       (select lprod.*
+					  from lprod
+					order by lprod_id) a) a
+		where rn between (#{page}-1)*#{pageSize}+1 and #{page}*#{pageSize}
+  	</select>
+  	
+  	  <!-- 전체 개수 조회 -->
+  	<select id="getLprodCnt" resultType="Integer">
+		select count (*)
+		  from lprod
+  	</select>
+  	
 </mapper>
 
 
