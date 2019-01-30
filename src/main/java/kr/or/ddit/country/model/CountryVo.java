@@ -1,10 +1,20 @@
 package kr.or.ddit.country.model;
 
+import java.util.ArrayList;
+
 public class CountryVo {
 	private String country_id;			// 국가번호
 	private String country_iso_code;	// 국가코드
 	private String country_name;		// 국가이름
 	private String country_subregion;	// 국가구역
+	
+	// 테이블을 만들 수가 없어..
+	public ArrayList<String> flagList = new ArrayList<String>();
+
+	public static void main(String[] args) {
+		CountryVo cVo = new CountryVo();
+		cVo.flagList.add("France");
+	}
 	
 	@Override
 	public String toString() {

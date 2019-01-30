@@ -28,4 +28,9 @@ public class CountryServiceImpl implements ICountryService{
 		return countryDao.getAllCountry();
 	}
 
+	@Override
+	public CountryVo selectCountry(String country_iso_code) {
+		return countryDao.selectCountry(country_iso_code);
+	}
+
 }
