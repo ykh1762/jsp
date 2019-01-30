@@ -11,5 +11,9 @@
   <li><a href="<%=request.getContextPath()%>/lprodPagingList">제품 그룹리스트 페이징</a></li>
 </ul>
 
+<ul class="nav nav-sidebar">
+  <li><a href="<%=request.getContextPath()%>/countryList">국가 리스트</a></li>
+</ul>
+
 
 
