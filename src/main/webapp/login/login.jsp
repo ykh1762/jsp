@@ -36,17 +36,70 @@
       <form class="form-signin" action="/login" method="post">
         <h2 class="form-signin-heading">Please sign in</h2>
         <label for="inputEmail" class="sr-only">Email address</label>
-        <input name="userId" value="brown" type="text" id="inputEmail" class="form-control" placeholder="Id" required autofocus>
+        <input name="userId" type="text" id="userId" class="form-control" placeholder="Id" required autofocus>
         <label for="inputPassword" class="sr-only">Password</label>
         <input name="password" value="brown1234" type="password" id="inputPassword" class="form-control" placeholder="Password" required>
         <div class="checkbox">
           <label>
-            <input type="checkbox" value="remember-me"> Remember me
+            <input type="checkbox" value="remember-me" id="rememberme"> Remember me
           </label>
         </div>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+        <button class="btn btn-lg btn-primary btn-block" type="button" id="signin">Sign in</button>
       </form>
       
     </div> <!-- /container -->
   </body>
+  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	<script src="<%=request.getContextPath() %>/js/cookieUtil.js"></script>  
+	<script src="<%=request.getContextPath() %>/js/js.cookie.js"></script> 
+	<script>
+		$(document).ready(function(){
+			// userId 쿠키 값이 있을경우 userId input에 설정.
+			if(Cookies.get("userId")){
+				$("#userId").val(Cookies.get("userId"));
+				$("#rememberme").prop("checked", true)
+			}
+			
+			// signin button 클릭 이벤트 핸들러.
+			$("#signin").click(function(){
+				console.log("signin");			
+				
+				// 1. rememberme 체크되었을 경우
+				// 		사용자 아이디 input에 저장되 값을 cookie 이름 : userId / 
+				// 		cookieValue : 입력된 값, 유효기간 30일로 설정하는 로직.
+				// 2. 체크되어있지 않은 경우
+				// 		cookie 이름 : userId --> cookie 삭제.
+				
+				
+				if($("#rememberme").prop("checked")){
+					Cookies.set("userId", $("#userId").val(), {expires : 30});	
+					Cookies.set("rememberme", "y", {expires : 30});	
+				}else{
+					Cookies.remove("userId");
+					Cookies.remove("rememberme");
+				}
+				
+				$("form").submit();
+			});
+			
+			
+			
+		});
+	</script> 
+  
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
