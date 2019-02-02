@@ -13,9 +13,6 @@ import kr.or.ddit.user.model.UserVo;
 import kr.or.ddit.user.service.IUserService;
 import kr.or.ddit.user.service.UserServiceImpl;
 
-/**
- * Servlet implementation class LoginServlet
- */
 // web.xml에 설정한 servlet-mapping을 대신하는 annotation.
 @WebServlet("/login")
 public class LoginServlet extends HttpServlet {

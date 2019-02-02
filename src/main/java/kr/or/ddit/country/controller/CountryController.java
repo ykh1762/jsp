@@ -1,6 +1,7 @@
 package kr.or.ddit.country.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -31,8 +32,11 @@ public class CountryController extends HttpServlet {
 		// 해당 파라미터로 userService.selectUser(userId);
 		CountryVo countryVo = countryService.selectCountry(country_iso_code);
 		
+//		ArrayList<String> flagList = countryVo.flagList;
+		
 		// 조회된 user객체를 request객체에 속성으로 저장.
 		request.setAttribute("countryVo", countryVo);
+//		request.setAttribute("flagList", flagList);
 		
 		// 상세 화면으로 위임.
 		request.getRequestDispatcher("/country/country.jsp").forward(request, response);

@@ -1,3 +1,4 @@
+<%@page import="java.util.ArrayList"%>
 <%@page import="kr.or.ddit.country.model.CountryVo"%>
 <%@page import="kr.or.ddit.user.model.UserVo"%>
 <%@page import="java.util.List"%>
@@ -38,9 +39,169 @@
 			<h1 class="page-header">국가 정보 조회</h1>
 			
 			<form class="form-horizontal" role="form">
-				<%
-					CountryVo country = (CountryVo)request.getAttribute("countryVo");
-				%>
+		<%
+			CountryVo country = (CountryVo)request.getAttribute("countryVo");
+  			ArrayList<String> flagList = new ArrayList<String>();
+   			
+    		if(flagList.size() == 0){
+ 				flagList.add("France.png");
+    		}
+   			for(int i=0; i<flagList.size(); i++){
+   				if(flagList.get(i).equals("United States of America.png")){
+   					break;
+   				}else if(i == flagList.size() - 1){
+   					flagList.add("United States of America.png");
+   				}
+   			}
+   			for(int i=0; i<flagList.size(); i++){
+   				if(flagList.get(i).equals("Germany.png")){
+   					break;
+   				}else if(i == flagList.size() - 1){
+   					flagList.add("Germany.png");
+   				}
+   			}
+   			for(int i=0; i<flagList.size(); i++){
+   				if(flagList.get(i).equals("United Kingdom.png")){
+   					break;
+   				}else if(i == flagList.size() - 1){
+   					flagList.add("United Kingdom.png");
+   				}
+   			}
+   			for(int i=0; i<flagList.size(); i++){
+   				if(flagList.get(i).equals("The Netherlands.png")){
+   					break;
+   				}else if(i == flagList.size() - 1){
+   					flagList.add("The Netherlands.png");
+   				}
+   			}
+   			for(int i=0; i<flagList.size(); i++){
+   				if(flagList.get(i).equals("Ireland.png")){
+   					break;
+   				}else if(i == flagList.size() - 1){
+   					flagList.add("Ireland.png");
+   				}
+   			}
+   			for(int i=0; i<flagList.size(); i++){
+   				if(flagList.get(i).equals("Denmark.png")){
+   					break;
+   				}else if(i == flagList.size() - 1){
+   					flagList.add("Denmark.png");
+   				}
+   			}
+   			for(int i=0; i<flagList.size(); i++){
+   				if(flagList.get(i).equals("Spain.png")){
+   					break;
+   				}else if(i == flagList.size() - 1){
+   					flagList.add("Spain.png");
+   				}
+   			}
+   			for(int i=0; i<flagList.size(); i++){
+   				if(flagList.get(i).equals("Turkey.png")){
+   					break;
+   				}else if(i == flagList.size() - 1){
+   					flagList.add("Turkey.png");
+   				}
+   			}
+   			for(int i=0; i<flagList.size(); i++){
+   				if(flagList.get(i).equals("Brazil.png")){
+   					break;
+   				}else if(i == flagList.size() - 1){
+   					flagList.add("Brazil.png");
+   				}
+   			}
+   			for(int i=0; i<flagList.size(); i++){
+   				if(flagList.get(i).equals("Argentina.png")){
+   					break;
+   				}else if(i == flagList.size() - 1){
+   					flagList.add("Argentina.png");
+   				}
+   			}
+   			for(int i=0; i<flagList.size(); i++){
+   				if(flagList.get(i).equals("Malaysia.png")){
+   					break;
+   				}else if(i == flagList.size() - 1){
+   					flagList.add("Malaysia.png");
+   				}
+   			}
+   			for(int i=0; i<flagList.size(); i++){
+   				if(flagList.get(i).equals("Japan.png")){
+   					break;
+   				}else if(i == flagList.size() - 1){
+   					flagList.add("Japan.png");
+   				}
+   			}
+   			for(int i=0; i<flagList.size(); i++){
+   				if(flagList.get(i).equals("India.png")){
+   					break;
+   				}else if(i == flagList.size() - 1){
+   					flagList.add("India.png");
+   				}
+   			}
+   			for(int i=0; i<flagList.size(); i++){
+   				if(flagList.get(i).equals("Australia.png")){
+   					break;
+   				}else if(i == flagList.size() - 1){
+   					flagList.add("Australia.png");
+   				}
+   			}
+   			for(int i=0; i<flagList.size(); i++){
+   				if(flagList.get(i).equals("New Zealand.png")){
+   					break;
+   				}else if(i == flagList.size() - 1){
+   					flagList.add("New Zealand.png");
+   				}
+   			}
+   			for(int i=0; i<flagList.size(); i++){
+   				if(flagList.get(i).equals("Poland.png")){
+   					break;
+   				}else if(i == flagList.size() - 1){
+   					flagList.add("Poland.png");
+   				}
+   			}
+   			for(int i=0; i<flagList.size(); i++){
+   				if(flagList.get(i).equals("South Africa.png")){
+   					break;
+   				}else if(i == flagList.size() - 1){
+   					flagList.add("South Africa.png");
+   				}
+   			}
+   			for(int i=0; i<flagList.size(); i++){
+   				if(flagList.get(i).equals("Saudi Arabia.png")){
+   					break;
+   				}else if(i == flagList.size() - 1){
+   					flagList.add("Saudi Arabia.png");
+   				}
+   			}
+   			for(int i=0; i<flagList.size(); i++){
+   				if(flagList.get(i).equals("Canada.png")){
+   					break;
+   				}else if(i == flagList.size() - 1){
+   					flagList.add("Canada.png");
+   				}
+   			}
+   			for(int i=0; i<flagList.size(); i++){
+   				if(flagList.get(i).equals("China.png")){
+   					break;
+   				}else if(i == flagList.size() - 1){
+   					flagList.add("China.png");
+   				}
+   			}
+   			for(int i=0; i<flagList.size(); i++){
+   				if(flagList.get(i).equals("Singapore.png")){
+   					break;
+   				}else if(i == flagList.size() - 1){
+   					flagList.add("Singapore.png");
+   				}
+   			}
+   			for(int i=0; i<flagList.size(); i++){
+   				if(flagList.get(i).equals("Italy.png")){
+   					break;
+   				}else if(i == flagList.size() - 1){
+   					flagList.add("Italy.png");
+   				}
+   			}
+  				
+		%>
 				
 				<div class="form-group">
 					<label for="pass" class="col-sm-2 control-label">국가이름</label>
@@ -52,20 +213,17 @@
 					<label for="userNm" class="col-sm-2 control-label">국기</label>
 					<div class="col-sm-10">
 						<label class="control-label">
-<%-- 						
-						코드를 잘못짰나?
-						<%	
-						out.write(country.flagList.size());
-						for(int i=0; i<country.flagList.size(); i++){ 
-							if(country.flagList.get(i).equals(country.getCountry_name())){%>
-								<img src="../img/<%=country.getCountry_name() %>.png" width="20" border="1"/>
+					<%	
+						for(int i=0; i<flagList.size(); i++){
+							if(flagList.get(i).equals(country.getCountry_name()+".png")){ %>
+								
+								<img src="../img/<%=country.getCountry_name() %>.png" width="40" border="1">
 							<%	break;
-							}else{ %>
-								<img src="../img/Korea.png" width="20" border="1"> 국기를 등록해주세요.
+							}else if(i == flagList.size() - 1){ %>
+								<img src="../img/Korea.png" width="40" border="1"> (국기를 등록해주세요.)
 						<%	}
-						} %>
---%>						
-							<img src="../img/Korea.png" width="20" border="1"> 국기를 등록해주세요.
+						}
+					%>
 						</label>
 					</div>
 				</div>	
@@ -91,7 +249,7 @@
 
 				<div class="form-group">
 					<div class="col-sm-offset-2 col-sm-10">
-						<button type="submit" class="btn btn-default">국가 수정</button>
+						<button type="submit" class="btn btn-default">정보 수정</button>
 					</div>
 				</div>
 			</form>			

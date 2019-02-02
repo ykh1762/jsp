@@ -9,12 +9,6 @@ public class CountryVo {
 	private String country_subregion;	// 국가구역
 	
 	// 테이블을 만들 수가 없어..
-	public ArrayList<String> flagList = new ArrayList<String>();
-
-	public static void main(String[] args) {
-		CountryVo cVo = new CountryVo();
-		cVo.flagList.add("France");
-	}
 	
 	@Override
 	public String toString() {
