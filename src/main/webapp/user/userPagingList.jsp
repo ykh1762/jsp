@@ -1,7 +1,8 @@
-<%@page import="kr.or.ddit.user.model.UserVo"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,7 +20,7 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 
     <!-- Custom styles for this template -->
-    <link href="<%=request.getContextPath()%>/css/dashboard.css" rel="stylesheet">
+    <link href="${pageContext.servletContext.contextPath }/css/dashboard.css" rel="stylesheet">
 
 <%@include file="/module/jsLib.jsp" %>
 
@@ -38,10 +39,6 @@
 		</div>
 		<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 			<h1 class="page-header">전체 사용자 리스트</h1>
-			<!-- userList 정보를 화면에 출력하는 로직 작성 -->
-			<%
-				List<UserVo> userList = (List) request.getAttribute("userList");
-			%>
 			<div class="table-responsive">
 				<table class="table table-striped">
 					<thead>
@@ -54,54 +51,62 @@
 						</tr>
 					</thead>
 					<tbody>
-					<%
-						for(int i=0; i<userList.size(); i++){
-							out.write("<tr class='userTr' data-userid='"+ userList.get(i).getUserId() +"'>");
-							out.write("    <td>"+ (i+1) +"</td>");
-							out.write("    <td>"+ userList.get(i).getUserId() +"</td>");
-							out.write("    <td>"+ userList.get(i).getUserNm() +"</td>");
-							out.write("    <td>-</td>");
-							out.write("    <td>"+ userList.get(i).getReg_dt_fmt() +"</td>");
-							out.write("</tr>");
-						}
-					%>
+						<c:forEach var="i" begin="0" end="${userList.size() - 1 }">
+							<tr class="userTr" data-userid="${userList.get(i).getUserId() }">
+								<td>${i+1 }</td>
+								<td>${userList.get(i).getUserId() }</td>
+								<td>${userList.get(i).getUserNm() }</td>
+								<td>-</td>
+								<td><fmt:formatDate value="${userList.get(i).reg_dt }" pattern="yyyy/MM/dd"/></td>
+							</tr>
+						</c:forEach>
 					</tbody>
 				</table>
-					<%					
-					int cpage = (Integer) request.getAttribute("page");
-					int userCnt = (Integer) request.getAttribute("userCnt");
-					int pageSize = (Integer) request.getAttribute("pageSize");
-					int lastPage = userCnt / pageSize + (userCnt % pageSize > 0 ? 1 : 0);
-					
-					String cp = request.getContextPath();
-				%>
+				
+				<!-- lastPage값이 double값이 되므로 Integer로 형변환 -->
+				<c:set var="lastPage" value="${Integer(userCnt / pageSize + (userCnt % pageSize > 0 ? 1 : 0)) }" />
+				
 				<nav style="text-align: center;">
-					<ul class="pagination">
-						<%	if(cpage == 1){ %>
-							<li class="disabled"><a aria-label="Previous"> 
-								<span aria-hidden="true">&laquo;</span>
-							</a></li>
-						<%	}else{ %>
-							<li><a href="<%=cp %>/userPagingList?page=1" aria-label="Previous"> 
-								<span aria-hidden="true">&laquo;</span>
-							</a></li>						
-						<%	} %>
-						<%	for(int i = 1; i <= lastPage; i++){	%>
-							<li
-							<%	if(i == cpage){ %>
-								class="active"
-							<%	} %>
-							><a href="<%=cp %>/userPagingList?page=<%=i%>"><%=i%></a></li>						
-						<%	} %>	
-						<%	if(cpage == lastPage){ %>
-							<li class="disabled"><a aria-label="Next"> 
+					<ul class="pagination">	
+							<!-- cpage가 아니고 속성(attribute)에 저장된 page를 가져와야 한다. -->
+						<c:choose>
+							<c:when test="${page == 1 }"> 
+								<li class="disabled"><a aria-label="Previous"> 
+									<span aria-hidden="true">&laquo;</span>
+								</a></li>							
+							</c:when>
+							<c:otherwise>
+								<li><a href="${pageContext.servletContext.contextPath }/userPagingList?page=1" aria-label="Previous"> 
+									<span aria-hidden="true">&laquo;</span>
+								</a></li>								
+							</c:otherwise>
+						</c:choose>
+						
+						<!-- 먼저 lastPage를 기본 객체의 속성으로 저장해야 함. -->
+						<c:forEach var="i" begin="1" end="${lastPage }">
+							<!-- <li>태그 안에 c:if를 넣어서 써도 됨. -->
+							<c:choose>
+								<c:when test="${i == page }">
+									<li class="active"><a href="${pageContext.servletContext.contextPath }/userPagingList?page=${i }">${i }</a></li>							
+								</c:when>
+								<c:otherwise>
+									<li><a href="${pageContext.servletContext.contextPath }/userPagingList?page=${i }">${i }</a></li>							
+								</c:otherwise>
+							</c:choose>
+						</c:forEach>
+							
+						<c:choose>
+							<c:when test="${page == lastPage }">
+								<li class="disabled"><a aria-label="Next"> 
 									<span aria-hidden="true">&raquo;</span>
-							</a></li>
-						<%	}else{ %>
-							<li><a href="<%=cp %>/userPagingList?page=<%=lastPage%>" aria-label="Next"> 
+								</a></li>							
+							</c:when>
+							<c:otherwise>
+								<li><a href="${cp }/userPagingList?page=${lastPage }" aria-label="Next"> 
 									<span aria-hidden="true">&raquo;</span>
-							</a></li>							
-						<%	} %>
+								</a></li>								
+							</c:otherwise>
+						</c:choose>						
 					</ul>
 				</nav>
 								
@@ -116,36 +121,19 @@
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 	<script>
-		// 문서로딩이 완료된 이후 이벤트 등록
 		$(document).ready(function(){
 			console.log("document ready");
 			
-			// 사용자 tr 태그 클릭시 이벤트 핸들러
 			$(".userTr").on("click", function(){
-				
-				// 클릭한 userTr 태그의 userId 값을 출력.
-// 				var userId = $(this).children()[1].innerText;
-// 				console.log("userId : " + userId);
-
 				var userId = $(this).data("userid");
 				
-				// /user
-				// 1. document
-// 				document.location = "/user?userId=" + userId;
-				
-				// 2. form
 				$("#userId").val(userId);
-				
-// 				$("#frm").attr("action", "/userAllList");
-				// --> form 태그의 속성 변경 가능.
-				
 				$("#frm").submit();
-				
 			});
 		});
 	</script>
 	
-<form action="<%=request.getContextPath() %>/user" id="frm">
+<form action="${pageContext.servletContext.contextPath }/user" id="frm">
 	<input type="hidden" name="userId" id="userId"/>
 </form>
 	

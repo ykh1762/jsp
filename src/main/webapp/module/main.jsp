@@ -36,8 +36,9 @@
 			<%@include file="/module/left.jsp"%>
 		</div>
 		<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-			<h1 class="page-header">Dashboard33332</h1>
-			module/main.jsp 111<br>
+			<h1 class="page-header">JSP with LineFriends</h1>
+			<br>
+				<img src="../img/lineFriends.jpg" width="800" border="1">			
 			<br>
 
 		</div>

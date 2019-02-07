@@ -2,24 +2,19 @@
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="icon" href="../../favicon.ico">
-
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>JSP Dashboard</title>
 
     <!-- Bootstrap core CSS -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 
     <!-- Custom styles for this template -->
-    <link href="<%=request.getContextPath()%>/css/dashboard.css" rel="stylesheet">
+    <link href="${pageContext.servletContext.contextPath }/css/dashboard.css" rel="stylesheet">
 
 <%@include file="/module/jsLib.jsp" %>
 
@@ -39,9 +34,6 @@
 		<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 			<h1 class="page-header">전체 사용자 리스트</h1>
 			<!-- userList 정보를 화면에 출력하는 로직 작성 -->
-			<%
-				List<UserVo> userList = (List) request.getAttribute("userList");
-			%>
 			<div class="table-responsive">
 				<table class="table table-striped">
 					<thead>
@@ -54,7 +46,7 @@
 						</tr>
 					</thead>
 					<tbody>
-					<%
+					<%--
 						for(int i=0; i<userList.size(); i++){
 							out.write("<tr class='userTr' data-userid='"+ userList.get(i).getUserId() +"'>");
 							out.write("    <td>"+ (i+1) +"</td>");
@@ -64,7 +56,18 @@
 							out.write("    <td>"+ userList.get(i).getReg_dt_fmt() +"</td>");
 							out.write("</tr>");
 						}
-					%>
+					--%>
+					<%-- 스크립틀릿 -> core 태그로 고치기 --%>
+						<c:forEach var="i" begin="0" end="${userList.size() - 1 }">
+							<tr class="userTr" data-userid="${userList.get(i).getUserId() }">
+								<td>${i+1 }</td>
+								<td>${userList.get(i).getUserId() }</td>
+								<td>${userList.get(i).getUserNm() }</td>
+								<td>-</td>
+<%-- 								<td>${userList.get(i).getReg_dt_fmt() }</td> --%>
+								<td><fmt:formatDate value="${userList.get(i).reg_dt }" pattern="yyyy/MM/dd"/></td>
+							</tr>
+						</c:forEach>
 					</tbody>
 				</table>
 			</div>
@@ -107,7 +110,21 @@
 		});
 	</script>
 	
-<form action="<%=request.getContextPath() %>/user" id="frm">
+<%
+	pageContext.getRequest().equals(request);
+	pageContext.getSession().equals(session);
+
+	request.getContextPath();
+	((HttpServletRequest) pageContext.getRequest()).getContextPath();
+	
+	application.getContextPath();
+	pageContext.getServletContext().getContextPath();
+	
+	// pageContext : 해당 jsp 페이지의 정보를 담고 있고 다른 기본 객체를 얻어올 수 있다.
+	// el에서 기본객체에 바로 접근할 수 없어서 pageContext를 이용.
+	
+%>
+<form action="${pageContext.servletContext.contextPath }/user" id="frm">
 	<input type="hidden" name="userId" id="userId"/>
 </form>
 	

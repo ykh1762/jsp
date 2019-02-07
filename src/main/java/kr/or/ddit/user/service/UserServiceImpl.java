@@ -58,6 +58,7 @@ public class UserServiceImpl implements IUserService {
 		
 		resultMap.put("userList", userDao.selectUserPagingList(pageVo));
 		resultMap.put("userCnt", userDao.getUserCnt());
+		// lastPage를 알기위해 userCnt를 구함.
 		
 		return resultMap;
 	}

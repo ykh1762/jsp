@@ -3,6 +3,7 @@
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,7 +21,7 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 
     <!-- Custom styles for this template -->
-    <link href="<%=request.getContextPath()%>/css/dashboard.css" rel="stylesheet">
+    <link href="${pageContext.servletContext.contextPath }/css/dashboard.css" rel="stylesheet">
 
 <%@include file="/module/jsLib.jsp" %>
 
@@ -39,9 +40,7 @@
 		</div>
 		<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 			<h1 class="page-header">전체 리스트</h1>
-			<%
-				List<LprodVo> lprodList = (List) request.getAttribute("lprodList");
-			%>
+			
 			<div class="table-responsive">
 				<table class="table table-striped">
 					<thead>
@@ -53,16 +52,15 @@
 						</tr>
 					</thead>
 					<tbody>
-					<%
-						for(int i=0; i<lprodList.size(); i++){
-							out.write("<tr class='lprodTr' data-lprod_gu='"+ lprodList.get(i).getLprod_gu() +"'>");
-							out.write("    <td>"+ (i+1) +"</td>");
-							out.write("    <td>"+ lprodList.get(i).getLprod_id() +"</td>");
-							out.write("    <td>"+ lprodList.get(i).getLprod_gu() +"</td>");
-							out.write("    <td>"+ lprodList.get(i).getLprod_nm() +"</td>");
-							out.write("</tr>");
-						}
-					%>
+
+						<c:forEach begin="0" end="${lprodList.size() - 1 }" var="i">
+							<tr class="lprodTr" data-lprod_gu="${lprodList.get(i).lprod_gu }">
+							<td>${i+1 }</td>
+							<td>${lprodList.get(i).lprod_id }</td>
+							<td>${lprodList.get(i).lprod_gu }</td>
+							<td>${lprodList.get(i).lprod_nm }</td>
+							</tr>
+						</c:forEach>
 					</tbody>
 				</table>
 			</div>
@@ -86,7 +84,7 @@
 		});
 	</script>
 	
-<form action="<%=request.getContextPath() %>/prodList" id="frm">
+<form action="${pageContext.servletContext.contextPath }/prodList" id="frm">
 	<input type="hidden" name="lprod_gu" id="lprod_gu"/>
 </form>
 	

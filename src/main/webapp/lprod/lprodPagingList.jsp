@@ -3,6 +3,7 @@
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,7 +21,7 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 
     <!-- Custom styles for this template -->
-    <link href="<%=request.getContextPath()%>/css/dashboard.css" rel="stylesheet">
+    <link href="${pageContext.servletContext.contextPath }/css/dashboard.css" rel="stylesheet">
 
 <%@include file="/module/jsLib.jsp" %>
 
@@ -39,9 +40,7 @@
 		</div>
 		<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 			<h1 class="page-header">전체 제품 리스트</h1>
-			<%
-				List<LprodVo> lprodList = (List) request.getAttribute("lprodList");
-			%>
+			
 			<div class="table-responsive">
 				<table class="table table-striped">
 					<thead>
@@ -49,58 +48,58 @@
 							<th>#</th>
 							<th>분류번호</th>
 							<th>카테고리</th>
-							<th>분류이름</th>
+							<th>분류이름11</th>
 						</tr>
 					</thead>
 					<tbody>
-					<%
-						for(int i=0; i<lprodList.size(); i++){
-							out.write("<tr class='lprodTr' data-lprod_gu='"+ 
-									lprodList.get(i).getLprod_gu() +"'>");
-							out.write("    <td>"+ (i+1) +"</td>");
-							out.write("    <td>"+ lprodList.get(i).getLprod_id() +"</td>");
-							out.write("    <td>"+ lprodList.get(i).getLprod_gu() +"</td>");
-							out.write("    <td>"+ lprodList.get(i).getLprod_nm() +"</td>");
-							out.write("</tr>");
-						}
-					%>
+						<c:forEach begin="0" end="${lprodList.size() - 1 }" var="i">
+							<tr class="lprodTr" data-lprod_gu="${lprodList.get(i).lprod_gu }">
+							<td>${i+1 }</td>
+							<td>${lprodList.get(i).lprod_id }</td>
+							<td>${lprodList.get(i).lprod_gu }</td>
+							<td>${lprodList.get(i).lprod_nm }</td>
+							</tr>
+						</c:forEach>
 					</tbody>
 				</table>
-				<%					
-					int cpage = (Integer) request.getAttribute("page");
-					int lprodCnt = (Integer) request.getAttribute("lprodCnt");
-					int pageSize = (Integer) request.getAttribute("pageSize");
-					int lastPage = lprodCnt / pageSize + (lprodCnt % pageSize > 0 ? 1 : 0);
-					
-					String cp = request.getContextPath();
-				%>
+				
+				<c:set var="lastPage" value="${Integer(lprodCnt / pageSize + (lprodCnt % pageSize > 0 ? 1 : 0)) }" />
+				
 				<nav style="text-align: center;">
 					<ul class="pagination">
-						<%	if(cpage == 1){ %>
-							<li class="disabled"><a aria-label="Previous"> 
-								<span aria-hidden="true">&laquo;</span>
-							</a></li>
-						<%	}else{ %>
-							<li><a href="<%=cp %>/lprodPagingList?page=1" aria-label="Previous"> 
-								<span aria-hidden="true">&laquo;</span>
-							</a></li>						
-						<%	} %>
-						<%	for(int i = 1; i <= lastPage; i++){	%>
-							<li
-							<%	if(i == cpage){ %>
-								class="active"
-							<%	} %>
-							><a href="<%=cp %>/lprodPagingList?page=<%=i%>"><%=i%></a></li>						
-						<%	} %>	
-						<%	if(cpage == lastPage){ %>
-							<li class="disabled"><a aria-label="Next"> 
+						
+						<c:choose>
+							<c:when test="${page == 1 }">
+								<li class="disabled"><a aria-label="Previous"> 
+									<span aria-hidden="true">&laquo;</span>
+								</a></li>							
+							</c:when>
+							<c:otherwise>
+								<li><a href="${pageContext.servletContext.contextPath }/lprodPagingList?page=1" aria-label="Previous"> 
+									<span aria-hidden="true">&laquo;</span>
+								</a></li>							
+							</c:otherwise>
+						</c:choose>
+						
+						<c:forEach var="i" begin="1" end="${lastPage }">
+							<li <c:if test="${i == page }">class="active"</c:if>>
+								<a href="${pageContext.servletContext.contextPath }/lprodPagingList?page=${i }">${i }</a></li>
+						</c:forEach>
+						
+						
+						<c:choose>
+							<c:when test="${page == lastPage }">
+								<li class="disabled"><a aria-label="Next"> 
 									<span aria-hidden="true">&raquo;</span>
-							</a></li>
-						<%	}else{ %>
-							<li><a href="<%=cp %>/lprodPagingList?page=<%=lastPage%>" aria-label="Next"> 
+								</a></li>							
+							</c:when>
+							<c:otherwise>
+								<li><a href="${pageContext.servletContext.contextPath }/lprodPagingList?page=${lastPage }" aria-label="Next"> 
 									<span aria-hidden="true">&raquo;</span>
-							</a></li>							
-						<%	} %>
+								</a></li>							
+							</c:otherwise>
+						</c:choose>
+						
 					</ul>
 				</nav>
 								

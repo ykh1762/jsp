@@ -16,6 +16,7 @@
   	</select>
   	
   	<!-- 사용자 페이징 조회 -->
+  	<!-- 특정 페이지 번호(page)에 해당하는 행들을 가져옴(행의 수는 pageSize). -->
   	<select id="selectUserPagingList" resultType="userVo" parameterType="pageVo">
 		select *
 		  from

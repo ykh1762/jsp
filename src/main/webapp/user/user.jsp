@@ -2,6 +2,7 @@
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,7 +15,7 @@
     <meta name="author" content="">
     <link rel="icon" href="../../favicon.ico">
 
-    <title>Dashboard Template for Bootstrap</title>
+    <title>Dashboard11</title>
 
     <!-- Bootstrap core CSS -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
@@ -70,7 +71,9 @@
 				<div class="form-group">
 					<label for="pass" class="col-sm-2 control-label">등록일자</label>
 					<div class="col-sm-10">
-						<label class="control-label"><%=user.getReg_dt_fmt() %></label>
+						<label class="control-label">
+							<fmt:formatDate value="${userVo.reg_dt }" pattern="yyyy/MM/dd"/>
+						</label>
 					</div>
 				</div>
 
