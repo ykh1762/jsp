@@ -9,7 +9,6 @@
 <%
 	// 기본 객체 사용가능.
 // 	jspContext
-	
 
 	SqlSessionFactory sqlSessionFactory = MybatisSqlSessionFactory.getSqlSessionFactory();
 	SqlSession sqlSession = sqlSessionFactory.openSession();
