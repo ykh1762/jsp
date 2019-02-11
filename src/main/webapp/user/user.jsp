@@ -3,6 +3,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,7 +16,7 @@
     <meta name="author" content="">
     <link rel="icon" href="../../favicon.ico">
 
-    <title>Dashboard11</title>
+    <title>Dashboard</title>
 
     <!-- Bootstrap core CSS -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
@@ -58,7 +59,26 @@
 				<div class="form-group">
 					<label for="userNm" class="col-sm-2 control-label">별명</label>
 					<div class="col-sm-10">
-						<label class="control-label">미구현</label>
+						<label class="control-label">${userVo.alias }</label>
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<label for="userNm" class="col-sm-2 control-label">우편번호</label>
+					<div class="col-sm-10">
+						<label class="control-label">${userVo.zipcode}</label>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="userNm" class="col-sm-2 control-label">주소</label>
+					<div class="col-sm-10">
+						<label class="control-label">${userVo.addr1}</label>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="userNm" class="col-sm-2 control-label">상세주소</label>
+					<div class="col-sm-10">
+						<label class="control-label">${userVo.addr2}</label>
 					</div>
 				</div>
 				<div class="form-group">
@@ -79,7 +99,7 @@
 
 				<div class="form-group">
 					<div class="col-sm-offset-2 col-sm-10">
-						<button type="submit" class="btn btn-default">사용자 수정</button>
+						<button id="btn_edit" type="button" class="btn btn-default">사용자 수정</button>
 					</div>
 				</div>
 			</form>			
@@ -87,6 +107,34 @@
 		</div>
 	</div>
 </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script>
+    	$(document).ready(function(){
+    		console.log("document ready");
+   			console.log("<%=user.getUserId() %>");
+   			
+   			<c:if test="${updateMsg} != null">
+   				alert("${updateMsg}");
+ 			<%	session.removeAttribute("updateMsg"); %>
+   			</c:if>
+   			
+    		
+    		$("#btn_edit").on("click", function(){
+    			var userId = "<%=user.getUserId() %>";
+    			$("#userId").val(userId);
+    			
+    			$("#frm").submit();
+    			
+    		});
+    		
+    	});
+    </script>
+    
+    <!-- UserModifyFormController로 요청을 보냄. -->
+    <form action="${pageContext.servletContext.contextPath }/userModifyForm" id="frm">
+    	<input type="hidden" id="userId" name="userId">
+    </form>
 
 </body>
 </html>

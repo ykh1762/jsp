@@ -63,6 +63,10 @@
 					</tbody>
 				</table>
 				
+				<form action="${pageContext.request.contextPath }/userForm" method="get">
+					<button type="submit" class="btn btn-default">사용자 등록</button>
+				</form>
+				
 				<!-- lastPage값이 double값이 되므로 Integer로 형변환 -->
 				<c:set var="lastPage" value="${Integer(userCnt / pageSize + (userCnt % pageSize > 0 ? 1 : 0)) }" />
 				
@@ -123,6 +127,16 @@
 	<script>
 		$(document).ready(function(){
 			console.log("document ready");
+			
+			// msg 속성이 존재하면 alert, 없을땐 넘어가기.
+			<c:if test="${msg != null}">
+				alert("${msg}");
+				<%
+					// msg를 다시 삭제해줘야함.
+					session.removeAttribute("msg");
+				%>
+			</c:if>
+			
 			
 			$(".userTr").on("click", function(){
 				var userId = $(this).data("userid");

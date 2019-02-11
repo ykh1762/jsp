@@ -2,22 +2,42 @@ package kr.or.ddit.user.dao;
 
 import static org.junit.Assert.*;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
+import kr.or.ddit.db.mybatis.MybatisSqlSessionFactory;
 import kr.or.ddit.user.model.UserVo;
 import kr.or.ddit.util.model.PageVo;
 
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
 public class UserDaoImplTest {
 
 	private IUserDao userDao;
+	private SqlSession sqlSession;
+	
+	// @Before - @Test - @After
 	
 	@Before
 	public void setup(){
 		userDao = new UserDaoImpl();
+		
+		SqlSessionFactory sqlSessionFactory = MybatisSqlSessionFactory.getSqlSessionFactory();
+		sqlSession = sqlSessionFactory.openSession();
+		
+		userDao.deleteUser(sqlSession, "test11");
 	}
+	
+	@After
+	public void tearDown(){
+		sqlSession.close();
+	}
+	
 	
 	// getAllUser 메서드를 테스트하는 메서드 작성.
 	@Test
@@ -25,7 +45,7 @@ public class UserDaoImplTest {
 		/***Given***/
 		
 		/***When***/
-		List<UserVo> userList = userDao.getAllUser();
+		List<UserVo> userList = userDao.getAllUser(sqlSession);
 //		for(UserVo userVo : userList){
 //			System.out.println(userVo);
 //		}
@@ -42,7 +62,7 @@ public class UserDaoImplTest {
 		/***Given***/
 		
 		/***When***/
-		UserVo user = userDao.selectUser("brown");
+		UserVo user = userDao.selectUser(sqlSession, "brown");
 		System.out.println("user : " + user);
 		
 		/***Then***/
@@ -63,7 +83,7 @@ public class UserDaoImplTest {
 		PageVo pageVo = new PageVo(1, 10);
 		
 		/***When***/
-		List<UserVo> userList = userDao.selectUserPagingList(pageVo);
+		List<UserVo> userList = userDao.selectUserPagingList(sqlSession, pageVo);
 //		for(UserVo user : userList){
 //			System.out.println("page : " + user);
 //		}
@@ -86,7 +106,7 @@ public class UserDaoImplTest {
 		/***Given***/
 		
 		/***When***/
-		int userCnt = userDao.getUserCnt();
+		int userCnt = userDao.getUserCnt(sqlSession);
 		System.out.println("userCnt : " + userCnt);
 
 		/***Then***/
@@ -129,6 +149,38 @@ public class UserDaoImplTest {
 		/***Then***/
 		assertEquals(11, lastPage);
 		
+	}
+	
+	@Test
+	public void testInsertUser(){
+		/***Given***/
+		
+		UserVo userVo = new UserVo("test11", "테스트", "별명", "대전 중구 대흥로 76", "2층 ddit", "34942",
+				"testpass", new Date());
+		
+		
+		
+		/***When***/
+		int insertCnt = userDao.insertUser(sqlSession, userVo); 
+		System.out.println(insertCnt);
+		
+		/***Then***/
+		assertEquals(1, insertCnt);
+
+	}
+	
+	@Test
+	public void testUpdateUser(){
+		/***Given***/
+		// '1111' 유저 정보 수정
+		UserVo userVo = new UserVo("1111", "2222", "2222", "2222", "2222", "2222", "2222");
+		
+		/***When***/
+		int updateCnt = userDao.updateUser(sqlSession, userVo);
+
+		/***Then***/
+		assertEquals(updateCnt, 1);
+
 	}
 	
 }

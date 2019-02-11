@@ -50,8 +50,17 @@ public class UserPagingListController extends HttpServlet {
 		request.setAttribute("page", page);
 		
 		// userPagingList를 화면으로 출력할 jsp로 위임(forward).
-		request.getRequestDispatcher("/user/userPagingList.jsp").forward(request, response);;
+		request.getRequestDispatcher("/user/userPagingList.jsp").forward(request, response);
 	}
+
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
+			throws ServletException, IOException {
+		doGet(req, resp);
+		// 일단은 이 방식으로.
+	}
+	
+	
 
 }
 

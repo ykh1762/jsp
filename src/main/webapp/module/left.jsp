@@ -20,5 +20,24 @@
   <li><a href="<%=request.getContextPath()%>/countryPagingList">국가 리스트 페이징</a></li>
 </ul>
 
+<ul class="nav nav-sidebar">
+  <li><a>자유게시판</a></li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

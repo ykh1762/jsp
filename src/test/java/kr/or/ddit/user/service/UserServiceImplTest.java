@@ -2,6 +2,7 @@ package kr.or.ddit.user.service;
 
 import static org.junit.Assert.*;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -20,6 +21,7 @@ public class UserServiceImplTest {
 	@Before
 	public void setup(){
 		userService = new UserServiceImpl();
+		userService.deleteUser("test11");
 	}
 
 	// getAllUser 메서드를 테스트하는 메서드 작성.
@@ -53,6 +55,8 @@ public class UserServiceImplTest {
 		
 	}
 	
+	// null인지 테스트하기
+	
 	@Test
 	public void testSelectUserPagingList(){
 		/***Given***/
@@ -79,5 +83,51 @@ public class UserServiceImplTest {
 		assertEquals(105, userCnt);
 		
 	}
+	
+	@Test
+	public void testInsertUser(){
+		/***Given***/
+		UserVo user = new UserVo("test11", "테스트", "별명", "대전 중구", "영민빌딩 2층", "22332", 
+				"testpass", new Date());
+		
+		/***When***/
+		int insertCnt = userService.insertUser(user);
+
+		/***Then***/
+		assertEquals(insertCnt, 1);
+		
+	}
+	
+	@Test
+	public void testUpdateUser(){
+		/***Given***/
+		// '1111' 유저 정보 수정
+		UserVo userVo = new UserVo("1111", "2222", "2222", "2222", "2222", "2222", "2222");
+		
+		/***When***/
+		int updateCnt = userService.updateUser(userVo);
+
+		/***Then***/
+		assertEquals(updateCnt, 1);
+
+	}
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
