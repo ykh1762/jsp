@@ -40,6 +40,31 @@ public class UtilTest {
 		
 	}
 
+	/**
+	 * 
+	 * Method : testGetFileNameFromPart
+	 * 작성자 : PC19
+	 * 변경이력 :
+	 * Method 설명 : part의 Content-Disposition 헤더로부터 fileName 가져오기.
+	 */
+	@Test
+	public void testGetFileNameFromPart(){
+		/***Given***/
+		String contentDisposition = "form-data; name=\"uploadFile\"; filename=\"cony.png\"";
+		String contentDisposition2 = "form-data; name=\"uploadFile\"; filename=\"sally.png\"";
+		// form-data; name="uploadFile"; filename="cony.png"
+		
+		/***When***/
+		String fileName = PartUtil.getFileNameFromPart(contentDisposition);
+		String fileName2 = PartUtil.getFileNameFromPart(contentDisposition2);
+		
+		/***Then***/
+		assertEquals("cony.png", fileName);
+		assertEquals("sally.png", fileName2);
+		
+	}
+	
+	
 }
 
 

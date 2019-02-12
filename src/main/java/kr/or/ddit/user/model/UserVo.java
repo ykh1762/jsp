@@ -12,6 +12,8 @@ public class UserVo {
 	private String zipcode; // 우편번호
 	private String pass; // 사용자 비밀번호
 	private Date reg_dt; // 등록일시
+	private String fileName; // 그림 파일명
+	private String realFileName; // 그림 파일 경로
 
 	// Ctrl+3 -> Quick Access에 getter입력. toString()도 만들기.
 
@@ -49,6 +51,7 @@ public class UserVo {
 		
 	}
 
+
 	public String getUserId() {
 		return userId;
 	}
@@ -75,14 +78,6 @@ public class UserVo {
 
 	public String getAddr1() {
 		return addr1;
-	}
-
-	@Override
-	public String toString() {
-		return "UserVo [userId=" + userId + ", userNm=" + userNm + ", alias="
-				+ alias + ", addr1=" + addr1 + ", addr2=" + addr2
-				+ ", zipcode=" + zipcode + ", pass=" + pass + ", reg_dt="
-				+ reg_dt + "]";
 	}
 
 	public void setAddr1(String addr1) {
@@ -120,5 +115,34 @@ public class UserVo {
 	public void setReg_dt(Date reg_dt) {
 		this.reg_dt = reg_dt;
 	}
+
+	public String getFileName() {
+		return fileName;
+	}
+
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
+	}
+
+	public String getRealFileName() {
+		return realFileName;
+	}
+
+	public void setRealFileName(String realFileName) {
+		this.realFileName = realFileName;
+	}
+
+	@Override
+	public String toString() {
+		return "UserVo [userId=" + userId + ", userNm=" + userNm + ", alias="
+				+ alias + ", addr1=" + addr1 + ", addr2=" + addr2
+				+ ", zipcode=" + zipcode + ", pass=" + pass + ", reg_dt="
+				+ reg_dt + ", fileName=" + fileName + ", realFileName="
+				+ realFileName + "]";
+	}
+
+
+
+
 
 }

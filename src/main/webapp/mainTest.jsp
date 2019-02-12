@@ -12,10 +12,10 @@
     <title>Dashboard Template for Bootstrap</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="../../dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 
     <!-- Custom styles for this template -->
-    <link href="dashboard.css" rel="stylesheet">
+    <link href="<%=request.getContextPath()%>/css/dashboard.css" rel="stylesheet">
 
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
@@ -79,15 +79,15 @@
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
           <h1 class="page-header">Dashboard</h1>
-
+          
           <div class="row placeholders">
             <div class="col-xs-6 col-sm-3 placeholder">
-              <img data-src="holder.js/200x200/auto/sky" class="img-responsive" alt="Generic placeholder thumbnail">
+              <img src="/img/brown.png" class="img-responsive" alt="Generic placeholder thumbnail">
               <h4>Label</h4>
               <span class="text-muted">Something else</span>
             </div>
             <div class="col-xs-6 col-sm-3 placeholder">
-              <img data-src="holder.js/200x200/auto/vine" class="img-responsive" alt="Generic placeholder thumbnail">
+              <img src="/img/sally.png" class="img-responsive" alt="Generic placeholder thumbnail">
               <h4>Label</h4>
               <span class="text-muted">Something else</span>
             </div>
@@ -230,6 +230,21 @@
                 </tr>
               </tbody>
             </table>
+            
+            <table border="1">
+            	<tr>
+            		<td>1</td>
+            		<td>2</td>
+            	</tr>
+            	<tr>
+            		<td>1</td>
+            		<td>2</td>
+            	</tr>
+            </table>
+            
+            <input type="text" style="height: 200px;">
+            <textarea rows="5" cols="30" name="contents"></textarea>
+            
           </div>
         </div>
       </div>

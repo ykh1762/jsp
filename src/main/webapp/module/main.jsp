@@ -14,12 +14,10 @@
 <title>Dashboard Template for Bootstrap</title>
 
 <!-- Bootstrap core CSS -->
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 
 <!-- Custom styles for this template -->
-<link href="<%=request.getContextPath()%>/css/dashboard.css"
-	rel="stylesheet">
+<link href="<%=request.getContextPath()%>/css/dashboard.css" rel="stylesheet">
 
 <%@include file="/module/jsLib.jsp"%>
 

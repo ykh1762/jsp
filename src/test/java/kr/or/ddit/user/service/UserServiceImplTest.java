@@ -56,6 +56,17 @@ public class UserServiceImplTest {
 	}
 	
 	// null인지 테스트하기
+	@Test
+	public void testSelectNotExistsUser(){
+		/***Given***/
+		
+		/***When***/
+		UserVo userVo = userService.selectUser("notExistsBrown");
+		
+		/***Then***/
+		assertNull(userVo);
+		
+	}
 	
 	@Test
 	public void testSelectUserPagingList(){

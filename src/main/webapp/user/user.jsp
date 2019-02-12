@@ -36,26 +36,38 @@
 			<%@include file="/module/left.jsp"%>
 		</div>
 		<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-			<h1 class="page-header">사용자 정보 조회</h1>
+			<h1 class="page-header">사용자 정보 조회11</h1>
 			
 			<form class="form-horizontal" role="form">
-				<%
-					UserVo user = (UserVo)request.getAttribute("userVo");
-				%>
-
+			
+				<div class="form-group">
+					<label for="userNm" class="col-sm-2 control-label">사진</label>
+					<div class="col-sm-10">
+<%-- 						<c:choose> --%>
+<%-- 							<c:when test="${userVo.fileName == null }"> --%>
+<%-- 								<img src="${pageContext.request.contextPath }/upload/noimg.png"/> --%>
+<%-- 							</c:when> --%>
+<%-- 							<c:otherwise> --%>
+<%-- 								<img src="${pageContext.request.contextPath }/upload/${userVo.fileName }"/> --%>
+<%-- 							</c:otherwise> --%>
+<%-- 						</c:choose> --%>
+						<img src="${pageContext.request.contextPath }/profileImg?userId=${userVo.userId }">
+					</div>
+				</div>
 				<div class="form-group">
 					<label for="userNm" class="col-sm-2 control-label">사용자 아이디</label>
 					<div class="col-sm-10">
-						<label class="control-label"><%=user.getUserId() %></label>
+						<label class="control-label">${userVo.userId }</label>
 					</div>
 				</div>
 
 				<div class="form-group">
 					<label for="userNm" class="col-sm-2 control-label">사용자 이름</label>
 					<div class="col-sm-10">
-						<label class="control-label"><%=user.getUserNm() %></label>
+						<label class="control-label">${userVo.userNm}</label>
 					</div>
 				</div>
+				<!-- dfjdihfkdjfidjfl;kjdijfkdjvkdfjcfsekfjdklskdkfjeifjdkfjeiiiiifioodijfkeijkjidjkfjikdjfejjdifjnckdmmmccmvnfdjdjfjdkffjjdjdkkfkekfkkdkdkkckkkkvkkkdkkfkkfkdlslfkkfjdkdkkekekekkdkfksllskdjfdivjdkjckdkfjdiidjfidjsksldkfjielsldkfjsldkmckvjsdfssdlfkdkdfjdislslsfjdkslslsxzkckdkkdfjfjdkkdldifjeisjdkslckjvkcjdkkdjfjvckslldjfiwoowidjvkckxlkcjvnc,cmvjsidjfjslxzkdkfjeiwopdoicjcxilxzlzcxjvkjxnckdjfiskmckdjfiejkskksfjfjkkdjfijejeidkkdjffkslxoxodidifjkfkekjfjfjdkdkfjfjdkdksisidjjfkejflskdjixzizjcxivjcxizjlkdjflkadjflakdfjaldijcidjicjajdknakdnxckjkxjckzxjcisjcddjffwodjzkdsfjfjdiiddiidjccjidssojffijeijfjoaoijsijdoijzkljcjlkjcidjcijkzjsicjskaslkjdlaisaoiajsdjcdklskzjkclskcjlcjzksjcklzksjdklzjsdijwdjlasdjskldaksjdoiwquqwieqwpoeiqwpoeiqwoudksjdskjcksjckzcjzkxcjzkcjjcjskjcksjcdijcicjcidjaiojsjjdisoaoaisjddjjdsiisjddjisdijdjjdisaosijdaiosjdaoisdjoaisdjdjisodjaoisdjaoisdjaisd -->
 				<div class="form-group">
 					<label for="userNm" class="col-sm-2 control-label">별명</label>
 					<div class="col-sm-10">
@@ -112,7 +124,7 @@
     <script>
     	$(document).ready(function(){
     		console.log("document ready");
-   			console.log("<%=user.getUserId() %>");
+   			console.log("${userVo.userId}");
    			
    			<c:if test="${updateMsg} != null">
    				alert("${updateMsg}");
@@ -121,7 +133,7 @@
    			
     		
     		$("#btn_edit").on("click", function(){
-    			var userId = "<%=user.getUserId() %>";
+    			var userId = "${userVo.userId}";
     			$("#userId").val(userId);
     			
     			$("#frm").submit();
