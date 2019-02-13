@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
 import kr.or.ddit.db.mybatis.MybatisSqlSessionFactory;
+import kr.or.ddit.encrypt.kisa.sha256.KISA_SHA256;
 import kr.or.ddit.user.dao.IUserDao;
 import kr.or.ddit.user.dao.UserDaoImpl;
 import kr.or.ddit.user.model.UserVo;
@@ -148,6 +149,39 @@ public class UserServiceImpl implements IUserService {
 		sqlSession.close();
 		
 		return updateCnt;
+	}
+
+	/**
+	 * 
+	 * Method : encryptPass
+	 * 작성자 : PC19
+	 * 변경이력 :
+	 * @return
+	 * Method 설명 : 전체 사용자 비밀번호 암호화.
+	 */
+	@Override
+	public int encryptPass() {
+		SqlSessionFactory sqlSessionFactory = MybatisSqlSessionFactory.getSqlSessionFactory();
+		SqlSession sqlSession = sqlSessionFactory.openSession();	
+		
+		List<UserVo> userList = userDao.getAllUser(sqlSession);
+		
+		int totalCnt = 0; 
+		
+		for(UserVo userVo : userList){
+			String encryptText = KISA_SHA256.encrypt(userVo.getPass());
+			userVo.setPass(encryptText);
+			
+			int updateCnt = userDao.updateUser(sqlSession, userVo);		
+			if(updateCnt == 1){
+				totalCnt++;
+			}
+		}
+		
+		sqlSession.commit();
+		sqlSession.close();
+		
+		return totalCnt;
 	}
 	
 	

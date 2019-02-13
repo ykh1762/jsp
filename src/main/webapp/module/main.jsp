@@ -38,6 +38,11 @@
 			<br>
 				<img src="../img/lineFriends.jpg" width="800" border="1">			
 			<br>
+			<br>
+			<br>
+			<form action="${pageContext.request.contextPath }/userPassEncrypt">
+				<input type="submit" class="btn btn-default" value="암호화"/>
+			</form>
 
 		</div>
 	</div>

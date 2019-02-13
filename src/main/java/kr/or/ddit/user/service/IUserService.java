@@ -73,5 +73,15 @@ public interface IUserService {
 	 * Method 설명 : 사용자 정보 수정.
 	 */
 	int updateUser(UserVo userVo);
+
+	/**
+	 * 
+	 * Method : encryptPass
+	 * 작성자 : PC19
+	 * 변경이력 :
+	 * @return
+	 * Method 설명 : 전체 사용자 비밀번호 암호화.
+	 */
+	int encryptPass();
 	
 }

@@ -52,13 +52,13 @@
   		update users
   		set
 		userNm = #{userNm},
-		alias = #{alias},
-		addr1 = #{addr1},
-		addr2 = #{addr2},
-		zipcode = #{zipcode},
+		alias = nvl(#{alias, jdbcType=VARCHAR}, alias),
+		addr1 = nvl(#{addr1, jdbcType=VARCHAR}, addr1),
+		addr2 = nvl(#{addr2, jdbcType=VARCHAR}, addr2),
+		zipcode = nvl(#{zipcode, jdbcType=VARCHAR}, zipcode),
 		pass = #{pass},
-		fileName = #{fileName},
-		realFileName = #{realFileName}
+		fileName = nvl(#{fileName, jdbcType=VARCHAR}, fileName),
+		realFileName = nvl(#{realFileName, jdbcType=VARCHAR}, realFileName)
 		where userId = #{userId}
 		
 <!-- 		nvl -> null일때 특정 값을 입력. -->
@@ -67,6 +67,10 @@
 		
   	</update>
   	
+  	<update id="updateUserPass" parameterType="userVo">
+		update users set pass = #{pass}
+		 where userId = #{userId}  		
+  	</update>
   	
   	
 </mapper>
