@@ -40,8 +40,16 @@
 	  <h1 class="page-header">사용자 정보 수정</h1>
 	  
 	  <form id="frm" action="${pageContext.request.contextPath }/userModifyForm" method="post" 
-	  		class="form-horizontal" role="form">
+	  		class="form-horizontal" role="form" enctype="multipart/form-data">
 	  
+	  	<div class="form-group">
+	  		<label for="userNm" class="col-sm-2 control-label">사진</label>
+	  		<div class="col-sm-7">
+	  			<img src="" style="margin-bottom: 20px;">
+	  			<input type="file" class="form-control" id="profile" name="profile"
+	  				placeholder="사진">
+	  		</div>
+	  	</div>
 	  	<div class="form-group">
 	  		<label for="userNm" class="col-sm-2 control-label">사용자 아이디</label>
 	  		<div class="col-sm-7">
@@ -127,6 +135,7 @@
 		$("#addr2").val("${user.addr2}");
 		$("#zipcode").val("${user.zipcode}");
 		$("#pass").val("${user.pass}");
+		$("img").attr("src", "${pageContext.request.contextPath}/profileImg?userId=${user.userId}");
 		// 다시 입력해야할 때 입력한 값이 남아있게 해줌.
 	}
 
