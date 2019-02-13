@@ -160,7 +160,7 @@ public class UserServiceImpl implements IUserService {
 	 * Method 설명 : 전체 사용자 비밀번호 암호화.
 	 */
 	@Override
-	public int encryptPass() {
+	public int encryptPass() { // 수정하기
 		SqlSessionFactory sqlSessionFactory = MybatisSqlSessionFactory.getSqlSessionFactory();
 		SqlSession sqlSession = sqlSessionFactory.openSession();	
 		

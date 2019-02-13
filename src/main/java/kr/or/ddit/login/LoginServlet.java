@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import kr.or.ddit.encrypt.kisa.sha256.KISA_SHA256;
 import kr.or.ddit.user.model.UserVo;
 import kr.or.ddit.user.service.IUserService;
 import kr.or.ddit.user.service.UserServiceImpl;
@@ -40,13 +41,13 @@ public class LoginServlet extends HttpServlet {
 		String userId = request.getParameter("userId"); // return -> 'String'
 		String password = request.getParameter("password");
 		
-		
 		// db에서 userId에 해당하는 사용자 정보를 조회
 		UserVo userVo = userService.selectUser(userId);
 		request.getSession().setAttribute("userVo", userVo);
 		
 		// db의 정보와 사용자 파라미터 정보가 일치하는 경우 --> main.jsp
-		if(userVo.getUserId().equals(userId) && userVo.getPass().equals(password)){
+		// 암호화 로직 추가
+		if(userVo.getUserId().equals(userId) && userVo.getPass().equals(KISA_SHA256.encrypt(password))){
 			// request객체를 이용하여 dispatcher 객체를 얻고 main.jsp로 forward
 			// webapp/main.jsp
 			RequestDispatcher rd = request.getRequestDispatcher("/module/main.jsp");
