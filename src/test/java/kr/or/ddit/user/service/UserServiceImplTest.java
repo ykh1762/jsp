@@ -122,6 +122,18 @@ public class UserServiceImplTest {
 		assertEquals(updateCnt, 1);
 
 	}
+	
+	@Test
+	public void testUpdateUserPass(){
+		/***Given***/
+		
+		/***When***/
+		int updateCnt = userService.encryptPass();
+		
+		/***Then***/
+		assertEquals(110, updateCnt);
+
+	}
 
 }
 

@@ -22,14 +22,15 @@
 
   <body>
   
-<!-- 	파라미터 전송을 위해 신경쓸 부분 -->
-<!-- 		1. 어디로 보내는지? : form action 속성 -->
-<!-- 			==> 로그인 처리 요청 : LoginServlet doPost -->
-<!-- 		2. 어떻게 보낼지? : form method 속성 -->
+<!-- 	파라미터 전송을 위해 신경쓸 부분 							-->
+<!-- 		1. 어디로 보내는지? : form action 속성 					-->
+<!-- 			==> 로그인 처리 요청 : LoginServlet doPost 			-->
+<!-- 		2. 어떻게 보낼지? : form method 속성 					-->
 <!-- 			==> post : 사용자 비밀번호같이 보안 이슈가 발생할 수 있는 상황에는 get방식으로 보내지
-						않는다. -->
-<!-- 		3. 뭘 보낼지? : input, select, textarea의 name속성. 
-				==> userId, password -->
+				않는다. 											-->
+<!-- 		3. 뭘 보낼지? : input, select, textarea의 name속성을 설정해야 파라미터로 전송을 할 수 
+			있다. 
+				==> userId, password 								-->
 	
     <div class="container">
 

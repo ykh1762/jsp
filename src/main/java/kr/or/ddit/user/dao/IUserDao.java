@@ -83,6 +83,18 @@ public interface IUserDao {
 	 * Method 설명 : 사용자 정보 수정.
 	 */
 	int updateUser(SqlSession sqlSession, UserVo userVo);
+
+	/**
+	 * 
+	 * Method : updateUserPass
+	 * 작성자 : PC19
+	 * 변경이력 :
+	 * @param sqlSession
+	 * @param userVo
+	 * @return
+	 * Method 설명 : 사용자 비밀번호 수정.
+	 */
+	int updateUserPass(SqlSession sqlSession, UserVo userVo);
 	
 }
 

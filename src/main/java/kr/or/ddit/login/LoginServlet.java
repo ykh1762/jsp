@@ -9,6 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import kr.or.ddit.encrypt.kisa.sha256.KISA_SHA256;
 import kr.or.ddit.user.model.UserVo;
 import kr.or.ddit.user.service.IUserService;
@@ -17,7 +20,7 @@ import kr.or.ddit.user.service.UserServiceImpl;
 // web.xml에 설정한 servlet-mapping을 대신하는 annotation.
 @WebServlet("/login")
 public class LoginServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+	private Logger logger = LoggerFactory.getLogger(LoginServlet.class);
 	
 	private IUserService userService;
 	
@@ -36,7 +39,7 @@ public class LoginServlet extends HttpServlet {
 
 	// login.jsp sign in 버튼을 눌렀을 때 요청 처리(로그인 요청 처리)
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// 사용자 전성 파라미터(userId, password)
+		// 사용자 전송 파라미터(userId, password)
 		// 두 파라미터 모두 단일값을 보내는 것을 이미 알고 있음.
 		String userId = request.getParameter("userId"); // return -> 'String'
 		String password = request.getParameter("password");
@@ -44,6 +47,10 @@ public class LoginServlet extends HttpServlet {
 		// db에서 userId에 해당하는 사용자 정보를 조회
 		UserVo userVo = userService.selectUser(userId);
 		request.getSession().setAttribute("userVo", userVo);
+		
+		
+		logger.debug("pass(param) : {}", userVo.getPass());
+		logger.debug("encrypt pass : {}", KISA_SHA256.encrypt(password));
 		
 		// db의 정보와 사용자 파라미터 정보가 일치하는 경우 --> main.jsp
 		// 암호화 로직 추가

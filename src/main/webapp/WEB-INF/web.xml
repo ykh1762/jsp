@@ -9,6 +9,7 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
+
   <servlet>
     <servlet-name>nowServlet</servlet-name>
     <servlet-class>kr.or.ddit.servlet.NowServlet</servlet-class>
@@ -47,4 +48,5 @@
     <res-type>javax.sql.DataSource</res-type>
     <res-auth>Container</res-auth>
   </resource-ref>
+
 </web-app>

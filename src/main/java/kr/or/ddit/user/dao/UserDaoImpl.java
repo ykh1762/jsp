@@ -119,6 +119,23 @@ public class UserDaoImpl implements IUserDao{
 				
 		return updateCnt;
 	}
+
+	/**
+	 * 
+	 * Method : updateUserPass
+	 * 작성자 : PC19
+	 * 변경이력 :
+	 * @param sqlSession
+	 * @param userVo
+	 * @return
+	 * Method 설명 : 사용자 비밀번호 수정.
+	 */
+	@Override
+	public int updateUserPass(SqlSession sqlSession, UserVo userVo) {
+		int updateCnt = sqlSession.update("user.updateUserPass", userVo);
+		
+		return updateCnt;
+	}
 }
 
 

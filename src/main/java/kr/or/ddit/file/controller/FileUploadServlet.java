@@ -22,7 +22,7 @@ import org.slf4j.LoggerFactory;
 /**
  * Servlet implementation class FileUploadServlet
  */
-@WebServlet("/fileUpload")
+//@WebServlet("/fileUpload")
 
 // 5MB = 5 * 1MB = 5 * 1024KB = 5 * 1024 * 1024BYTE
 @MultipartConfig(maxFileSize=5*1024*1024, maxRequestSize= 5*5*1024*1024)

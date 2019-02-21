@@ -166,22 +166,19 @@ public class UserServiceImpl implements IUserService {
 		
 		List<UserVo> userList = userDao.getAllUser(sqlSession);
 		
-		int totalCnt = 0; 
+		int updateCnt = 0; 
 		
 		for(UserVo userVo : userList){
 			String encryptText = KISA_SHA256.encrypt(userVo.getPass());
 			userVo.setPass(encryptText);
 			
-			int updateCnt = userDao.updateUser(sqlSession, userVo);		
-			if(updateCnt == 1){
-				totalCnt++;
-			}
+			updateCnt += userDao.updateUserPass(sqlSession, userVo);		
 		}
 		
 		sqlSession.commit();
 		sqlSession.close();
 		
-		return totalCnt;
+		return updateCnt;
 	}
 	
 	
