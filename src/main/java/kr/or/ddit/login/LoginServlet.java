@@ -46,6 +46,8 @@ public class LoginServlet extends HttpServlet {
 		
 		// db에서 userId에 해당하는 사용자 정보를 조회
 		UserVo userVo = userService.selectUser(userId);
+		
+		// listener 체크
 		request.getSession().setAttribute("userVo", userVo);
 		
 		

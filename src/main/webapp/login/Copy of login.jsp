@@ -20,7 +20,7 @@
 <!-- 어디로 전송할지? : form tag action -->
 <!-- 전송 메소드 : form tag method(default : get) -->
 <!-- 전송 파라미터 : input, select, textarea등에 name 속성이 존재해야 함. -->
-<form action="<%=request.getContextPath() %>/login/loginRequest.jsp" method="post">
+<form action="${cp }/login/loginRequest.jsp" method="post">
 사용자 id : <input type="text" name="userId" value="브라운"> <br>
 사용자 id : <input type="text" name="userId" value="cony"> <br>
 비밀번호 : <input type="password" name="password" value="pass1234"> <br>

@@ -32,7 +32,7 @@
 	
 %>
 
-<form action="${pageContext.request.contextPath }/jstl/selectLang.jsp" id="frm">
+<form action="${cp }/jstl/selectLang.jsp" id="frm">
 	<select id="mySel" name="lang">
 		<option value="ko" <c:if test="${lang == 'ko' }"> selected</c:if>>한국어</option>
 		<option value="ja" <c:if test="${lang == 'ja' }"> selected</c:if>>日本言</option>

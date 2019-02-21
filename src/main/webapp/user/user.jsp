@@ -22,7 +22,7 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 
     <!-- Custom styles for this template -->
-    <link href="<%=request.getContextPath()%>/css/dashboard.css" rel="stylesheet">
+    <link href="${cp }/css/dashboard.css" rel="stylesheet">
 
 <%@include file="/module/jsLib.jsp" %>
 
@@ -45,13 +45,13 @@
 					<div class="col-sm-10">
 <%-- 						<c:choose> --%>
 <%-- 							<c:when test="${userVo.fileName == null }"> --%>
-<%-- 								<img src="${pageContext.request.contextPath }/upload/noimg.png"/> --%>
+<%-- 								<img src="${cp }/upload/noimg.png"/> --%>
 <%-- 							</c:when> --%>
 <%-- 							<c:otherwise> --%>
-<%-- 								<img src="${pageContext.request.contextPath }/upload/${userVo.fileName }"/> --%>
+<%-- 								<img src="${cp }/upload/${userVo.fileName }"/> --%>
 <%-- 							</c:otherwise> --%>
 <%-- 						</c:choose> --%>
-						<img src="${pageContext.request.contextPath }/profileImg?userId=${userVo.userId }">
+						<img src="${cp }/profileImg?userId=${userVo.userId }">
 					</div>
 				</div>
 				<div class="form-group">
@@ -144,7 +144,7 @@
     </script>
     
     <!-- UserModifyFormController로 요청을 보냄. -->
-    <form action="${pageContext.servletContext.contextPath }/userModifyForm" id="frm">
+    <form action="${cp }/userModifyForm" id="frm">
     	<input type="hidden" id="userId" name="userId">
     </form>
 

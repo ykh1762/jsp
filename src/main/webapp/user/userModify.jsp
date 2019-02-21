@@ -22,7 +22,7 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 
     <!-- Custom styles for this template -->
-    <link href="<%=request.getContextPath()%>/css/dashboard.css" rel="stylesheet">
+    <link href="${cp }/css/dashboard.css" rel="stylesheet">
 
 <%@include file="/module/jsLib.jsp" %>
 
@@ -39,7 +39,7 @@
   	<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 	  <h1 class="page-header">사용자 정보 수정</h1>
 	  
-	  <form id="frm" action="${pageContext.request.contextPath }/userModifyForm" method="post" 
+	  <form id="frm" action="${cp }/userModifyForm" method="post" 
 	  		class="form-horizontal" role="form" enctype="multipart/form-data">
 	  
 	  	<div class="form-group">
@@ -135,7 +135,7 @@
 		$("#addr2").val("${user.addr2}");
 		$("#zipcode").val("${user.zipcode}");
 		$("#pass").val("${user.pass}");
-		$("img").attr("src", "${pageContext.request.contextPath}/profileImg?userId=${user.userId}");
+		$("img").attr("src", "${cp}/profileImg?userId=${user.userId}");
 		// 다시 입력해야할 때 입력한 값이 남아있게 해줌.
 	}
 

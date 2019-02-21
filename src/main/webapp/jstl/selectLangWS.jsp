@@ -12,7 +12,7 @@
 </head>
 <body>
 
-<form action="${pageContext.request.contextPath }/selectLang" id="frm" method="post">
+<form action="${cp }/selectLang" id="frm" method="post">
 	<select id="mySel" name="lang">
 		<option value="ko">한국어</option>
 		<option value="ja">日本言</option>

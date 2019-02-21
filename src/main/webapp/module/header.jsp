@@ -12,24 +12,25 @@
 					class="icon-bar"></span>
 			</button>
 			<a class="navbar-brand" href="#">
-			<%
-				UserVo userVo = (UserVo)session.getAttribute("userVo");
-				String userId = userVo == null ? "" : userVo.getUserId();
-				
-				out.write("사용자 ID : " + userId);
-			%>
+				사용자 ID : ${userVo.userId }
 			</a>
 		</div>
 		<div id="navbar" class="navbar-collapse collapse">
 			<ul class="nav navbar-nav navbar-right">
-				<li><a href="#">Dashboard</a></li>
-				<li><a href="#">Settings</a></li>
-				<li><a href="#">Profile</a></li>
-				<li><a href="#">Help</a></li>
+				<li><a href="${cp }/logout">Logout</a></li>
 			</ul>
-			<form class="navbar-form navbar-right">
-				<input type="text" class="form-control" placeholder="Search...">
-			</form>
 		</div>
 	</div>
 </nav>
+
+
+
+
+
+
+
+
+
+
+
+

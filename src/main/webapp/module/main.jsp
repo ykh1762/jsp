@@ -17,7 +17,7 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 
 <!-- Custom styles for this template -->
-<link href="<%=request.getContextPath()%>/css/dashboard.css" rel="stylesheet">
+<link href="${cp }/css/dashboard.css" rel="stylesheet">
 
 <%@include file="/module/jsLib.jsp"%>
 
@@ -40,7 +40,7 @@
 			<br>
 			<br>
 			<br>
-			<form action="${pageContext.request.contextPath }/userPassEncrypt">
+			<form action="${cp }/userPassEncrypt">
 				<input type="submit" class="btn btn-default" value="암호화" disabled/>
 			</form>
 

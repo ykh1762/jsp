@@ -14,7 +14,7 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 
     <!-- Custom styles for this template -->
-    <link href="${pageContext.servletContext.contextPath }/css/dashboard.css" rel="stylesheet">
+    <link href="${cp }/css/dashboard.css" rel="stylesheet">
 
 <%@include file="/module/jsLib.jsp" %>
 
@@ -124,7 +124,7 @@
 	// el에서 기본객체에 바로 접근할 수 없어서 pageContext를 이용.
 	
 %>
-<form action="${pageContext.servletContext.contextPath }/user" id="frm">
+<form action="${cp }/user" id="frm">
 	<input type="hidden" name="userId" id="userId"/>
 </form>
 	

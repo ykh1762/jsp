@@ -51,10 +51,12 @@
     </div> <!-- /container -->
   </body>
   	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-	<script src="<%=request.getContextPath() %>/js/cookieUtil.js"></script>  
-	<script src="<%=request.getContextPath() %>/js/js.cookie.js"></script> 
+	<script src="${cp }/js/cookieUtil.js"></script>  
+	<script src="${cp }/js/js.cookie.js"></script> 
 	<script>
 		$(document).ready(function(){
+			console.log("cp : ${cp }");
+			
 			// userId 쿠키 값이 있을경우 userId input에 설정.
 			if(Cookies.get("userId")){
 				$("#userId").val(Cookies.get("userId"));

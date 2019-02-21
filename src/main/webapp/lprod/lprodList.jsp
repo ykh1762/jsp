@@ -21,7 +21,7 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 
     <!-- Custom styles for this template -->
-    <link href="${pageContext.servletContext.contextPath }/css/dashboard.css" rel="stylesheet">
+    <link href="${cp }/css/dashboard.css" rel="stylesheet">
 
 <%@include file="/module/jsLib.jsp" %>
 
@@ -84,7 +84,7 @@
 		});
 	</script>
 	
-<form action="${pageContext.servletContext.contextPath }/prodList" id="frm">
+<form action="${cp }/prodList" id="frm">
 	<input type="hidden" name="lprod_gu" id="lprod_gu"/>
 </form>
 	

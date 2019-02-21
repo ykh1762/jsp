@@ -20,7 +20,7 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 
     <!-- Custom styles for this template -->
-    <link href="${pageContext.servletContext.contextPath }/css/dashboard.css" rel="stylesheet">
+    <link href="${cp }/css/dashboard.css" rel="stylesheet">
 
 <%@include file="/module/jsLib.jsp" %>
 
@@ -63,7 +63,7 @@
 					</tbody>
 				</table>
 				
-				<form action="${pageContext.request.contextPath }/userForm" method="get">
+				<form action="${cp }/userForm" method="get">
 					<button type="submit" class="btn btn-default">사용자 등록</button>
 				</form>
 				
@@ -80,7 +80,7 @@
 								</a></li>							
 							</c:when>
 							<c:otherwise>
-								<li><a href="${pageContext.servletContext.contextPath }/userPagingList?page=1" aria-label="Previous"> 
+								<li><a href="${cp }/userPagingList?page=1" aria-label="Previous"> 
 									<span aria-hidden="true">&laquo;</span>
 								</a></li>								
 							</c:otherwise>
@@ -91,10 +91,10 @@
 							<!-- <li>태그 안에 c:if를 넣어서 써도 됨. -->
 							<c:choose>
 								<c:when test="${i == page }">
-									<li class="active"><a href="${pageContext.servletContext.contextPath }/userPagingList?page=${i }">${i }</a></li>							
+									<li class="active"><a href="${cp }/userPagingList?page=${i }">${i }</a></li>							
 								</c:when>
 								<c:otherwise>
-									<li><a href="${pageContext.servletContext.contextPath }/userPagingList?page=${i }">${i }</a></li>							
+									<li><a href="${cp }/userPagingList?page=${i }">${i }</a></li>							
 								</c:otherwise>
 							</c:choose>
 						</c:forEach>
@@ -147,7 +147,7 @@
 		});
 	</script>
 	
-<form action="${pageContext.servletContext.contextPath }/user" id="frm">
+<form action="${cp }/user" id="frm">
 	<input type="hidden" name="userId" id="userId"/>
 </form>
 	
