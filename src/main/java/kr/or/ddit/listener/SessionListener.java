@@ -7,7 +7,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class SessionListener implements HttpSessionListener{
-	// 1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
 	private Logger logger = LoggerFactory.getLogger(SessionListener.class);
 	
 	@Override
