@@ -40,8 +40,9 @@
 			<br>
 			<br>
 			<br>
+			<label>수정되었습니다.</label>
 			<form action="${cp }/userPassEncrypt">
-				<input type="submit" class="btn btn-default" value="암호화" disabled/>
+				<input type="submit" class="btn btn-default" value="암호화1" disabled/>
 			</form>
 
 		</div>
